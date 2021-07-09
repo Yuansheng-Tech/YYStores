@@ -34,7 +34,7 @@ import {
 MIT
 
 [npm-version-image]: https://img.shields.io/npm/v/@ysyp/stores.svg?style=flat-square
-[npm-version-url]: https://www.npmjs.com/package/@ysyp/ui
+[npm-version-url]: https://www.npmjs.com/package/@ysyp/stores
 [npm-downloads-image]: https://img.shields.io/npm/dm/@ysyp/stores?style=flat-square
 [npm-downloads-url]: https://www.npmjs.com/package/@ysyp/stores
 [license-image]: https://img.shields.io/github/license/Yuansheng-Tech/YYStores?style=flat-square
