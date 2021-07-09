@@ -1,0 +1,55 @@
+/*
+ *   Copyright (c) 2020 Fu Yin
+ *   All rights reserved.
+
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+
+ *   http://www.apache.org/licenses/LICENSE-2.0
+
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ */
+
+import { action, observable } from 'mobx';
+import Store from './Store';
+import { fetch } from '@ysyp/utils';
+
+export class MiniUserStore extends Store {
+  /**
+   * 接口返回资料
+   */
+  @observable userData = {}
+  @observable employee = {}
+
+  gender = [
+    '同学',
+    '男士',
+    '女士'
+    // i18next.t('同学'),
+    // i18next.t('男士'),
+    // i18next.t('女士')
+  ];
+
+  api = {
+    get: 'miniUser',
+    gets: 'miniUsers',
+    post: 'miniUsers',
+    put: 'miniUser',
+    patch: 'miniUsers',
+    delete: 'miniUsers'
+  }
+
+  @action
+  async account(data) {
+    const res = await fetch({ url: `/miniUser/account`, data, method: 'GET' });
+    return res.data
+  }
+}
+
+// export createContext(new miniUserStore())
+export default new MiniUserStore()
