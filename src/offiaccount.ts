@@ -28,18 +28,23 @@ export class OffiaccountStore extends Store {
     post: 'offiaccount',
     put: 'offiaccount',
     patch: 'offiaccount',
-    delete: 'offiaccount'
-  }
+    delete: 'offiaccount',
+  };
 
   /**
    * 公众号配置
+   *
    * @param data { url: '' }
    */
   @action
   async config(data) {
-    const res = await fetch(`/offiaccount/config`, data, 'GET');
-    return res.data
+    const res = await fetch({
+      url: `/offiaccount/config`,
+      data,
+      method: 'GET',
+    });
+    return res.data;
   }
 }
 
-export default new OffiaccountStore()
+export default new OffiaccountStore();

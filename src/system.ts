@@ -21,29 +21,34 @@ import Store from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class SystemStore extends Store {
-  @observable mineList = []
-  @observable firstRegisterLimit = []
+  @observable mineList = [];
+  @observable firstRegisterLimit = [];
   api = {
     get: 'system',
     gets: '',
     post: '',
     put: '',
     patch: '',
-    delete: ''
-  }
+    delete: '',
+  };
 
   @action
-  async getOneByEfunc(url, data={}) {
+  async getOneByEfunc(url, data = {}) {
     Taro.showLoading({
-      title: "加载中..."
+      title: '加载中...',
     });
-    const sysData = await fetch(`/${this.api.get}${url}`, data) || {};
+    const sysData =
+      (await fetch({
+        url: `/${this.api.get}${url}`,
+        data,
+        method: 'GET',
+      })) || {};
     console.log('sysData', sysData);
-    const result = (sysData.data && sysData.data.length) ? JSON.parse(sysData.data[0].value) : null
+    const result = sysData.data && sysData.data.length ? JSON.parse(sysData.data[0].value) : null;
     Taro.hideLoading();
-    return result
+    return result;
   }
 }
 
 // export createContext(new shopStore())
-export default new SystemStore()
+export default new SystemStore();
