@@ -15,15 +15,25 @@
  *   limitations under the License.
  */
 
-import { action, observable } from 'mobx';
-import Store from './Store';
+import { action, makeObservable, observable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class UserStore extends Store {
-  /**
-   * 接口返回资料
-   */
-  @observable userData = {}
+  /** 接口返回资料 */
+  userData = {};
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      adminCount: action,
+    });
+    this.rootStore = rootStore;
+  }
 
   api = {
     get: 'user',
@@ -31,15 +41,11 @@ export class UserStore extends Store {
     post: 'users',
     put: 'user',
     patch: 'users',
-    delete: 'users'
-  }
+    delete: 'users',
+  };
 
-  @action
   async adminCount(data) {
     const res = await fetch({ url: `/user/account`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
 }
-
-// export createContext(new miniUserStore())
-export default new UserStore()

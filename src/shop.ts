@@ -15,17 +15,30 @@
  *   limitations under the License.
  */
 
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import Taro from '@tarojs/taro';
-import Store from './Store';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class ShopStore extends Store {
-  @observable shopId = ''
-  @observable nearByShop = Taro.getStorageSync('nearByShop') || {}
-  @observable setShopAdress = Taro.getStorageSync('setShopAdress') || ''
-  @observable ShopAdressFlag = Taro.getStorageSync('ShopAdressFlag') || 0
-  @observable nearByShopes = []
+  shopId = '';
+  nearByShop = Taro.getStorageSync('nearByShop') || {};
+  setShopAdress = Taro.getStorageSync('setShopAdress') || '';
+  ShopAdressFlag = Taro.getStorageSync('ShopAdressFlag') || 0;
+  nearByShopes = [];
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      bylbs: action,
+      byids: action,
+    });
+    this.rootStore = rootStore;
+  }
 
   api = {
     get: 'shop',
@@ -33,24 +46,19 @@ export class ShopStore extends Store {
     post: 'shopes',
     put: 'shopes',
     patch: 'shopes',
-    delete: 'shopes'
-  }
+    delete: 'shopes',
+  };
 
   // 根据地理位置获取最近店铺
-  @action
   async bylbs(data) {
     // data.brandId = Taro.getStorageSync('brand').id;
-    
+
     const res = await fetch({ url: `/shopes/bylbs`, data, method: 'GET' });
-    return res
+    return res;
   }
 
-  @action
   async byids(data) {
     const res = await fetch({ url: `/shopes/byids`, data, method: 'GET' });
-    return res
+    return res;
   }
 }
-
-// export createContext(new shopStore())
-export default new ShopStore()

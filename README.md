@@ -3,6 +3,7 @@
 [![NPM][npm-version-image]][npm-version-url] [![NPM Downloads][npm-downloads-image]][npm-version-url] [![License][license-image]][license-url]
 
 > YYStores 可能会出现较大改动并且不保证功能完整可用，请谨慎使用。
+
 ## 安装
 
 在项目中安装 YYStores
@@ -16,14 +17,13 @@ npm install @ysyp/stores
 在代码中 `import` 需要的组件并按照文档说明使用
 
 ```js
-import {
-  goodStore
-} from '@ysyp/stores'
+import { goodStore } from '@ysyp/stores';
 ```
 
 ## 开发交流
 
-[官方微信交流群](https://github.com/Yuansheng-Tech/YYStores/issues)
+[Issues
+](https://github.com/Yuansheng-Tech/YYStores/issues)
 
 ## 开发计划
 

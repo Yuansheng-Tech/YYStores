@@ -15,14 +15,26 @@
  *   limitations under the License.
  */
 
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import Taro from '@tarojs/taro';
-import Store from './Store';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class SystemStore extends Store {
-  @observable mineList = [];
-  @observable firstRegisterLimit = [];
+  mineList = [];
+  firstRegisterLimit = [];
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      getOneByEfunc: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'system',
     gets: '',
@@ -32,7 +44,6 @@ export class SystemStore extends Store {
     delete: '',
   };
 
-  @action
   async getOneByEfunc(url, data = {}) {
     Taro.showLoading({
       title: '加载中...',
@@ -49,6 +60,3 @@ export class SystemStore extends Store {
     return result;
   }
 }
-
-// export createContext(new shopStore())
-export default new SystemStore();

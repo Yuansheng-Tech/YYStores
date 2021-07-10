@@ -15,123 +15,131 @@
  *   limitations under the License.
  */
 
-import Taro from '@tarojs/taro'
-import { action } from 'mobx';
+import Taro from '@tarojs/taro';
+import { action, makeObservable } from 'mobx';
 import i18next from 'i18next';
 import { fetch } from '@ysyp/utils';
-import Store from './Store';
+import Store, { StoreProps } from './Store';
 
 export class OrderStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      vip: action,
+      add: action,
+      check: action,
+      memopay: action,
+      list: action,
+      lists: action,
+      coupon: action,
+      classes: action,
+      qrcode: action,
+      rush: action,
+      cancel: action,
+      finish: action,
+      success: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'order',
     gets: 'order',
     post: 'order',
     put: 'orders',
     patch: 'orders',
-    delete: 'order'
-  }
+    delete: 'order',
+  };
 
   // VIP order
-  @action
   async vip(data) {
     const res = await fetch({ url: `/order/vip`, data, method: 'POST' });
-    return res.data
+    return res.data;
   }
 
-  @action
   async add(data) {
     const res = await fetch({ url: `/order/add`, data, method: 'POST' });
-    return res.data
+    return res.data;
   }
 
-  @action
   async check(data) {
     const res = await fetch({ url: `/order/check`, data, method: 'POST' });
-    return res.data
+    return res.data;
   }
 
-  @action
   async memopay(data) {
     const res = await fetch({ url: `/order/memopay`, data, method: 'PUT' });
-    return res
+    return res;
   }
 
-  @action
   async lists(data) {
     const res = await fetch({ url: `/order/lists`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
 
-  @action
   async list(type, data) {
     const res = await fetch({ url: `/order/list/${type}`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
 
   // 购买健身课程
-  @action
   async classes(data) {
     const res = await fetch({ url: `/order/class`, data, method: 'POST' });
-    return res
+    return res;
   }
 
   // 购买优惠券
-  @action
   async coupon(data) {
     const res = await fetch({ url: `/order/coupon`, data, method: 'POST' });
-    return res.data || {}
+    return res.data || {};
   }
 
-  @action
   async qrcode(id, data) {
     const res = await fetch({ url: `/order/qrcode/${id}`, data, method: 'GET' });
-    return res.data || {}
+    return res.data || {};
   }
 
-  @action
   async rush(data) {
     Taro.showLoading({
-      title: i18next.t('加载中...')
+      title: i18next.t('加载中...'),
     });
     const res = await fetch({ url: `/order/rush`, data, method: 'PUT' });
     Taro.hideLoading();
-    return res.data || {}
+    return res.data || {};
   }
 
-  @action
   async cancel(data) {
     Taro.showLoading({
-      title: i18next.t('加载中...')
+      title: i18next.t('加载中...'),
     });
     const res = await fetch({ url: `/order/refund`, data, method: 'POST' });
     Taro.hideLoading();
-    return res.data || {}
+    return res.data || {};
   }
 
-  @action
   async finish(data) {
     Taro.showLoading({
-      title: i18next.t('加载中...')
+      title: i18next.t('加载中...'),
     });
     const res = await fetch({ url: `/order/finish`, data, method: 'PUT' });
     Taro.hideLoading();
-    return res.data || {}
+    return res.data || {};
   }
 
   // 购买优惠券成功
-  @action
   async success(data, callback = () => {}) {
     const res = await fetch({ url: `/order/success`, data, method: 'PUT' });
     const { message, statusCode } = res;
-    
+
     Taro.showToast({
       title: statusCode === 200 ? i18next.t('购买成功') : i18next.t('购买出错'),
       icon: statusCode === 200 ? 'success' : 'none',
       duration: 2000,
-    }).then(() => (statusCode === 200) && callback());
-    return res.data || {}
+    }).then(() => statusCode === 200 && callback());
+    return res.data || {};
   }
 }
-
-// export createContext(new OrderStore())
-export default new OrderStore()

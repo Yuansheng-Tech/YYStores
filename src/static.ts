@@ -15,26 +15,34 @@
  *   limitations under the License.
  */
 
-import Store from './Store';
-import { action } from 'mobx';
+import Store, { StoreProps } from './Store';
+import { action, makeObservable } from 'mobx';
 import { fetch } from '@ysyp/utils';
 
 export class StaticStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      html: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'static',
     gets: 'statics',
     post: 'statics',
     put: 'statics',
     patch: 'statics',
-    delete: 'statics'
-  }
+    delete: 'statics',
+  };
 
-  @action
   async html(url, data) {
-    const res = await fetch({url, data, method: 'GET' });
-    return res.data || []
+    const res = await fetch({ url, data, method: 'GET' });
+    return res.data || [];
   }
 }
-
-// export createContext(new vipStore())
-export default new StaticStore()

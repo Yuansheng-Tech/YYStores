@@ -15,63 +15,74 @@
  *   limitations under the License.
  */
 
-import { action } from 'mobx';
-import Store from './Store';
+import { action, makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
+/** 权限，登录，注册 */
 export class AuthStore extends Store {
-  // 微信登录
-  @action
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      wxlogin: action,
+      register: action,
+      encrypt: action,
+      welogin: action,
+      login: action,
+    });
+    this.rootStore = rootStore;
+  }
+
+  /** 微信登录 */
   async wxlogin(data) {
     const res = await fetch({
       url: `/mini/login`,
       data,
-      method: 'POST'
+      method: 'POST',
     });
-    return res
+    return res;
   }
-  // 用户注册
-  @action
+  /** 用户注册 */
   async register(data) {
     const res = await fetch({
       url: `/mini/register`,
       data,
-      method: 'POST'
+      method: 'POST',
     });
-    return res
+    return res;
   }
-  // 登录解密
-  @action
+  /** 登录解密 */
   async encrypt(data) {
     const res = await fetch({
       url: `/mini/encrypt`,
       data,
-      method: 'POST'
+      method: 'POST',
     });
-    return res.data
+    return res.data;
   }
 
-  // 公众号登陆
-  @action
+  /** 公众号登陆 */
   async welogin(data) {
     const res = await fetch({
       url: `/mini/welogin`,
       data,
-      method: 'POST'
+      method: 'POST',
     });
-    return res.data
+    return res.data;
   }
 
-  @action
+  /** H5 登录 */
   async login(data) {
     const res = await fetch({
       url: `/login`,
       data,
-      method: 'POST'
+      method: 'POST',
     });
-    return res
+    return res;
   }
 }
-
-// export createContext(new ClassifyStore())
-export default new AuthStore()

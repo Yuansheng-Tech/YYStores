@@ -15,17 +15,26 @@
  *   limitations under the License.
  */
 
-import Store from './Store';
+import { makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 
 export class OpenadsStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'wechat/openads',
     gets: 'wechat/openads',
     post: 'wechat/openads',
     put: 'wechat/openads',
     patch: 'wechat/openads',
-    delete: 'wechat/openads'
-  }
+    delete: 'wechat/openads',
+  };
 }
-
-export default new OpenadsStore()

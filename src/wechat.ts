@@ -15,26 +15,34 @@
  *   limitations under the License.
  */
 
-import { action } from 'mobx';
-import Store from './Store';
+import { action, makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class WechatStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      getQrcode: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'wechat',
     gets: 'wechats',
     post: 'wechats',
     put: 'wechats',
     patch: 'wechats',
-    delete: 'wechats'
-  }
+    delete: 'wechats',
+  };
 
-  @action
   async getQrcode(data) {
     const res = await fetch({ url: `/wechat/qrcode`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
 }
-
-// export createContext(new vipfinanceStore())
-export default new WechatStore()

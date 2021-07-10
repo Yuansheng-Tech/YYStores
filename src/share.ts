@@ -15,18 +15,26 @@
  *   limitations under the License.
  */
 
-import Store from './Store';
+import { makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 
 export class ShareStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'share',
     gets: 'shares',
     post: 'shares',
     put: 'shares',
     patch: 'shares',
-    delete: 'shares'
-  }
+    delete: 'shares',
+  };
 }
-
-// export createContext(new shareStore())
-export default new ShareStore()

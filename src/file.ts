@@ -15,31 +15,39 @@
  *   limitations under the License.
  */
 
-import { observable, action } from 'mobx';
-import Store from './Store';
+import { observable, action, makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class FileStore extends Store {
-  @observable file = ''
+  file = '';
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      fileUpload: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: '',
     gets: '',
     post: `/file/wxupload`,
     put: '',
     patch: '',
-    delete: ''
-  }
+    delete: '',
+  };
 
-  @action
   async fileUpload(data) {
     const res = await fetch({
       url: `/file/wxupload`,
       data,
-      method: 'GET'
+      method: 'GET',
     });
-    return res.data || []
+    return res.data || [];
   }
 }
-
-// export createContext(new shopStore())
-export default new FileStore()

@@ -17,11 +17,23 @@
 
 // offiaccount/config
 
-import Store from './Store';
-import { action } from 'mobx';
+import Store, { StoreProps } from './Store';
+import { action, makeObservable } from 'mobx';
 import { fetch } from '@ysyp/utils';
 
 export class OffiaccountStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      config: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'offiaccount',
     gets: 'offiaccount',
@@ -36,7 +48,6 @@ export class OffiaccountStore extends Store {
    *
    * @param data { url: '' }
    */
-  @action
   async config(data) {
     const res = await fetch({
       url: `/offiaccount/config`,
@@ -46,5 +57,3 @@ export class OffiaccountStore extends Store {
     return res.data;
   }
 }
-
-export default new OffiaccountStore();

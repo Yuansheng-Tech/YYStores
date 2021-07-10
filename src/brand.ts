@@ -15,13 +15,24 @@
  *   limitations under the License.
  */
 
-import { observable } from 'mobx';
-import Taro from "@tarojs/taro";
-import Store from './Store';
+import { makeObservable, observable } from 'mobx';
+import Taro from '@tarojs/taro';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class BrandStore extends Store {
-  @observable brand = Taro.getStorageSync('brand') || {}
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+    });
+    this.rootStore = rootStore;
+  }
+
+  brand = Taro.getStorageSync('brand') || {};
 
   api = {
     get: 'brand',
@@ -29,9 +40,6 @@ export class BrandStore extends Store {
     post: 'brands',
     put: 'brands',
     patch: 'brands',
-    delete: 'brands'
-  }
+    delete: 'brands',
+  };
 }
-
-// export createContext(new BrandStore())
-export default new BrandStore()

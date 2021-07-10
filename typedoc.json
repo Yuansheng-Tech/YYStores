@@ -1,0 +1,10 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "typedocOptions": {
+    "mode": "file",
+    "excludeExternals": true,
+    "excludeNotExported": true,
+    "excludePrivate": true
+  }
+}

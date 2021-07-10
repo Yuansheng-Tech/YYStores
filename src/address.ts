@@ -15,50 +15,60 @@
  *   limitations under the License.
  */
 
-import { action } from 'mobx';
-import Store from './Store';
+import { action, makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
+/** 地址 */
 export class AddressStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      getSchool: action,
+      getThreeAddress: action,
+      addreUser: action,
+    });
+    this.rootStore = rootStore;
+  }
+
   api = {
     get: 'address',
     gets: 'addresses',
     post: 'addresses',
     put: 'addresses',
     patch: 'addresses',
-    delete: 'addresses'
-  }
-  
-  @action
+    delete: 'addresses',
+  };
+
   async getSchool(data) {
     const res = await fetch({
       url: `/address/school`,
       data,
-      method: 'GET'
+      method: 'GET',
     });
-    return res.data
+    return res.data;
   }
 
-  @action
   async getThreeAddress(code) {
     const res = await fetch({
       url: `/province/${code}`,
       data: {},
-      method: 'GET'
-    })
-    return res.data
+      method: 'GET',
+    });
+    return res.data;
   }
 
-  @action
   async addreUser(url = '', data = {}, type) {
     const res = await fetch({
       url: `/addre/user${url}`,
       data,
-      method: type
+      method: type,
     });
-    return res
+    return res;
   }
 }
-
-// export createContext(new ClassifyStore())
-export default new AddressStore()

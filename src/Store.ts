@@ -15,14 +15,24 @@
  *   limitations under the License.
  */
 
-import { action } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import Taro from '@tarojs/taro';
 
 import { fetch } from '@ysyp/utils';
 
+export const StoreProps = {
+  data: observable,
+  datas: observable,
+  get: action,
+  gets: action,
+  post: action,
+  put: action,
+  delete: action,
+  patch: action,
+};
 export default class Store {
-  data = ''
-  datas = []
+  data = '';
+  datas = [];
 
   api = {
     get: '',
@@ -30,110 +40,101 @@ export default class Store {
     post: '',
     put: '',
     delete: '',
-    patch: ''
-  }
+    patch: '',
+  };
 
-  /**
-   * @param url  路径 或者 ID
-   */
-  @action
+  /** @param url 路径 或者 ID */
   async get(url: string | object = '', data) {
     Taro.showLoading({
-      title: "加载中..."
+      title: '加载中...',
     });
     const res = await fetch({
       url: `/${this.api.get}${url}`,
       data,
-      method: 'GET'
+      method: 'GET',
     });
-    this.data = res.data || ''
+    this.data = res.data || '';
     Taro.hideLoading();
-    return res.data
+    return res.data;
   }
 
-  @action
   async gets(url: string, data) {
     Taro.showLoading({
-      title: "加载中..."
+      title: '加载中...',
     });
     const res = await fetch({
       url: `/${this.api.gets}${url}`,
       data,
-      method: 'GET'
+      method: 'GET',
     });
-    this.datas = res.data || []
+    this.datas = res.data || [];
     Taro.hideLoading();
-    return res.data || []
+    return res.data || [];
   }
 
-  @action
   async fetchs(data) {
     Taro.showLoading({
-      title: "加载中..."
+      title: '加载中...',
     });
     const res = await fetch({
       url: `/${this.api.gets}`,
       data,
-      method: 'GET'
+      method: 'GET',
     });
-    this.datas = res.data || []
+    this.datas = res.data || [];
     Taro.hideLoading();
-    return res.data || []
+    return res.data || [];
   }
 
-  @action
   async post(data) {
     Taro.showLoading({
-      title: "加载中..."
+      title: '加载中...',
     });
-    const res = await fetch({ 
+    const res = await fetch({
       url: `/${this.api.post}`,
       data,
-      method: 'POST'
+      method: 'POST',
     });
-    this.data = res.data || ''
+    this.data = res.data || '';
     Taro.hideLoading();
-    return res.data
+    return res.data;
   }
 
-  @action
   async put(data) {
     Taro.showLoading({
-      title: "加载中..."
+      title: '加载中...',
     });
-    const res = await fetch({ url:`/${this.api.put}`, data, method: 'PUT' });
-    this.data = res.data || ''
+    const res = await fetch({ url: `/${this.api.put}`, data, method: 'PUT' });
+    this.data = res.data || '';
     Taro.hideLoading();
-    return res.data
+    return res.data;
   }
 
-  @action
   async patch(data) {
     Taro.showLoading({
-      title: "加载中..."
+      title: '加载中...',
     });
     const res = await fetch({
       url: `/${this.api.patch}`,
       data,
-      method: 'PUT'
+      method: 'PUT',
     });
-    this.data = res.data || ''
+    this.data = res.data || '';
     Taro.hideLoading();
-    return res.data
+    return res.data;
   }
 
-  @action
   async delete(data) {
     Taro.showLoading({
-      title: "加载中..."
+      title: '加载中...',
     });
     const res = await fetch({
       url: `/${this.api.delete}/${data.id}`,
       data,
-      method: 'DELETE'
+      method: 'DELETE',
     });
-    this.data = res.data || ''
+    this.data = res.data || '';
     Taro.hideLoading();
-    return res.data
+    return res.data;
   }
 }

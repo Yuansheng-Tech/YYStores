@@ -15,35 +15,46 @@
  *   limitations under the License.
  */
 
-import { observable, action } from 'mobx'
+import { observable, action, makeObservable } from 'mobx';
 
 import { fetch } from '@ysyp/utils';
 
 export class SaleStore {
-  @observable goodSale = []
-  @observable sourceCount = []
+  goodSale = [];
+  sourceCount = [];
+  rootStore;
 
-  @action
-  async getGoodCount(data = {
-    shop: {
-      id: 0
-    }
-  }) {
-    const res = await fetch({ url: `/dashboard/good/count`, data, method: 'GET' });
-    this.goodSale = res.data || []
-    return res.data || []
+  constructor(rootStore) {
+    makeObservable(this, {
+      rootStore: false,
+
+      getGoodCount: action,
+      getSourceCount: action,
+    });
+    this.rootStore = rootStore;
   }
 
-  @action
-  async getSourceCount(data = {
-    shop: {
-      id: 0
+  async getGoodCount(
+    data = {
+      shop: {
+        id: 0,
+      },
     }
-  }) {
+  ) {
+    const res = await fetch({ url: `/dashboard/good/count`, data, method: 'GET' });
+    this.goodSale = res.data || [];
+    return res.data || [];
+  }
+
+  async getSourceCount(
+    data = {
+      shop: {
+        id: 0,
+      },
+    }
+  ) {
     const res = await fetch({ url: `/dashboard/source/count`, data, method: 'GET' });
-    this.sourceCount = res.data || []
-    return res.data || []
+    this.sourceCount = res.data || [];
+    return res.data || [];
   }
 }
-
-export default new SaleStore()

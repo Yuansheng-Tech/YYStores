@@ -15,17 +15,30 @@
  *   limitations under the License.
  */
 
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import Taro from '@tarojs/taro';
-import Store from './Store';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
-export class ShchollStore extends Store {
-  @observable nearBySchool = Taro.getStorageSync('nearBySchool') || {}
-  @observable setSchoolAdress =  Taro.getStorageSync('setSchoolAdress') || {};
-  @observable SchoolAdressFlag = Taro.getStorageSync('SchoolAdressFlag') || {};
-  @observable shchoolId =  Taro.getStorageSync('shchoolId');
-  @observable nearBySchools = []
+export class SchoolStore extends Store {
+  nearBySchool = Taro.getStorageSync('nearBySchool') || {};
+  setSchoolAdress = Taro.getStorageSync('setSchoolAdress') || {};
+  SchoolAdressFlag = Taro.getStorageSync('SchoolAdressFlag') || {};
+  shchoolId = Taro.getStorageSync('shchoolId');
+  nearBySchools = [];
+
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      bylbs: action,
+    });
+    this.rootStore = rootStore;
+  }
 
   api = {
     get: 'school',
@@ -33,15 +46,12 @@ export class ShchollStore extends Store {
     post: 'schools',
     put: 'schools',
     patch: 'schools',
-    delete: 'schools'
-  }
+    delete: 'schools',
+  };
 
   // 根据地理位置获取最近店铺
-  @action
   async bylbs(data) {
     const res = await fetch({ url: `/schools/bylbs`, data, method: 'GET' });
-    return res
+    return res;
   }
 }
-
-export default new ShchollStore()

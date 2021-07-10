@@ -15,36 +15,44 @@
  *   limitations under the License.
  */
 
-import Store from './Store';
-import { action } from 'mobx';
+import Store, { StoreProps } from './Store';
+import { action, makeObservable } from 'mobx';
 import { fetch } from '@ysyp/utils';
 
 export class ClassifyStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      periphery: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'classify',
     gets: 'classifies',
     post: 'classifies',
     put: 'classifies',
     patch: 'classifies',
-    delete: 'classifies'
-  }
+    delete: 'classifies',
+  };
 
   /**
    * 获取周边分类
-   * 
-   * @param shopId 
-   * @param data 
+   *
+   * @param shopId
+   * @param data
    */
-  @action
   periphery(shopId, data) {
     const res = fetch({
       url: `/classify/periphery/${shopId}`,
       data,
-      method: 'GET'
+      method: 'GET',
     });
-    return res
+    return res;
   }
 }
-
-// export createContext(new ClassifyStore())
-export default new ClassifyStore()

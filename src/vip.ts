@@ -15,18 +15,26 @@
  *   limitations under the License.
  */
 
-import Store from './Store';
+import { makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 
 export class VipStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'vip',
     gets: 'vips',
     post: 'vips',
     put: 'vips',
     patch: 'vips',
-    delete: 'vips'
-  }
+    delete: 'vips',
+  };
 }
-
-// export createContext(new vipStore())
-export default new VipStore()

@@ -15,18 +15,26 @@
  *   limitations under the License.
  */
 
-import Store from './Store';
+import { makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 
 export class VipfinanceStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'vipfinance',
     gets: 'vipfinancees',
     post: 'vipfinancees',
     put: 'vipfinancees',
     patch: 'vipfinancees',
-    delete: 'vipfinancees'
-  }
+    delete: 'vipfinancees',
+  };
 }
-
-// export createContext(new vipfinanceStore())
-export default new VipfinanceStore()

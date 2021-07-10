@@ -15,32 +15,40 @@
  *   limitations under the License.
  */
 
-import { action } from 'mobx';
-import Store from './Store';
+import { action, makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class WeappStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      pushMessage: action,
+      getMessages: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'weapp',
     gets: 'weapps',
     post: 'weapps',
     put: 'weapps',
     patch: 'weapps',
-    delete: 'weapps'
-  }
+    delete: 'weapps',
+  };
   // 消息推送
-  @action
   async pushMessage(data) {
     const res = await fetch({ url: `/weapp/message/push`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
   // 订阅功能
-  @action
   async getMessages(data) {
     const res = await fetch({ url: `/weapp/messages`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
 }
-
-// export createContext(new vipfinanceStore())
-export default new WeappStore()

@@ -15,63 +15,68 @@
  *   limitations under the License.
  */
 
-import Store from './Store';
-import { action } from 'mobx';
+import Store, { StoreProps } from './Store';
+import { action, makeObservable } from 'mobx';
 import { fetch } from '@ysyp/utils';
 import Taro from '@tarojs/taro';
 import i18next from 'i18next';
 
 export class MiniUserCouponStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      getPopupCoupon: action,
+      getList: action,
+      setPopupCouponShowed: action,
+      miniUserCouponGet: action,
+      miniUserCouponShare: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'miniUserCoupon',
     gets: 'miniUserCoupones',
     post: 'miniUserCoupones',
     put: 'miniUserCoupones',
     patch: 'miniUserCoupones',
-    delete: 'miniUserCoupones'
-  }
- 
-  @action
+    delete: 'miniUserCoupones',
+  };
+
   async getPopupCoupon(data) {
     const res = await fetch({ url: `/miniUserCoupon/popup`, data, method: 'GET' });
-    return res.data || []
+    return res.data || [];
   }
- 
-  @action
+
   async getList(data) {
     const res = await fetch({ url: `/miniUserCoupon/list`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
- 
-  @action
+
   async setPopupCouponShowed(data) {
     const res = await fetch({ url: `/miniUserCoupon/showed`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
 
-  /**
-   * 领取优惠券
-   */
-  @action
+  /** 领取优惠券 */
   async miniUserCouponGet(id) {
     const res = await fetch({ url: `/miniUserCoupon/get/${id}`, data: {}, method: 'GET' });
-    (res.statusCode === 200) && Taro.showToast({
-      title: i18next.t('领取成功'),
-      icon: 'success',
-      duration: 2000,
-    });
-    /**
-     * 返回 status 做判断
-     */
-    return res.data
+    res.statusCode === 200 &&
+      Taro.showToast({
+        title: i18next.t('领取成功'),
+        icon: 'success',
+        duration: 2000,
+      });
+    /** 返回 status 做判断 */
+    return res.data;
   }
 
-  @action
   async miniUserCouponShare(id) {
     const res = await fetch({ url: `/miniUserCoupon/share/${id}`, data: {}, method: 'GET' });
-    return res.data
+    return res.data;
   }
 }
-
-// export createContext(new miniUserCouponStore())
-export default new MiniUserCouponStore()

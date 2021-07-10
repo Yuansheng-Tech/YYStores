@@ -15,26 +15,34 @@
  *   limitations under the License.
  */
 
-import { action } from 'mobx';
-import Store from './Store';
+import { action, makeObservable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class ShopGoodStore extends Store {
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      byShopClassify: action,
+    });
+    this.rootStore = rootStore;
+  }
   api = {
     get: 'shopGood',
     gets: 'shopGoods',
     post: 'shopGoods',
     put: 'shopGoods',
     patch: 'shopGoods',
-    delete: 'shopGoods'
-  }
+    delete: 'shopGoods',
+  };
 
-  @action
   async byShopClassify(data) {
     const res = await fetch({ url: `/shopGood`, data, method: 'GET' });
-    return res.data || []
+    return res.data || [];
   }
 }
-
-// export createContext(new shopStore())
-export default new ShopGoodStore()

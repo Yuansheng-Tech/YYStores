@@ -15,15 +15,23 @@
  *   limitations under the License.
  */
 
-import { observable } from 'mobx';
-import Store from './Store';
+import { makeObservable, observable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class FeedbackStore extends Store {
-  /**
-   * 接口返回资料
-   */
-  @observable userData = {}
+  /** 接口返回资料 */
+  userData = {};
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+    });
+    this.rootStore = rootStore;
+  }
 
   api = {
     get: 'feedback',
@@ -31,9 +39,6 @@ export class FeedbackStore extends Store {
     post: 'feedbacks',
     put: 'feedback',
     patch: 'feedbacks',
-    delete: 'feedbacks'
-  }
+    delete: 'feedbacks',
+  };
 }
-
-// export createContext(new miniUserStore())
-export default new FeedbackStore()

@@ -15,25 +15,35 @@
  *   limitations under the License.
  */
 
-import { action, observable } from 'mobx';
-import Store from './Store';
+import { action, makeObservable, observable } from 'mobx';
+import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 
 export class MiniUserStore extends Store {
-  /**
-   * 接口返回资料
-   */
-  @observable userData = {}
-  @observable employee = {}
+  /** 接口返回资料 */
+  userData = {};
+  employee = {};
 
   gender = [
     '同学',
     '男士',
-    '女士'
+    '女士',
     // i18next.t('同学'),
     // i18next.t('男士'),
     // i18next.t('女士')
   ];
+  rootStore;
+
+  constructor(rootStore) {
+    super();
+    makeObservable(this, {
+      rootStore: false,
+      ...StoreProps,
+
+      account: action,
+    });
+    this.rootStore = rootStore;
+  }
 
   api = {
     get: 'miniUser',
@@ -41,15 +51,11 @@ export class MiniUserStore extends Store {
     post: 'miniUsers',
     put: 'miniUser',
     patch: 'miniUsers',
-    delete: 'miniUsers'
-  }
+    delete: 'miniUsers',
+  };
 
-  @action
   async account(data) {
     const res = await fetch({ url: `/miniUser/account`, data, method: 'GET' });
-    return res.data
+    return res.data;
   }
 }
-
-// export createContext(new miniUserStore())
-export default new MiniUserStore()
