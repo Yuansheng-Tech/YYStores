@@ -70,6 +70,7 @@
   "dependencies": {
     "@tarojs/components": "^3.2.15",
     "@tarojs/taro": "3.2.7",
+    "@ysyp/ui": "^0.1.0",
     "js-cookie": "^2.2.1",
     "lodash.mapvalues": "^4.6.0",
     "mobx": "^6.3.2",
