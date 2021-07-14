@@ -17,7 +17,25 @@ npm install @ysyp/stores
 在代码中 `import` 需要的组件并按照文档说明使用
 
 ```js
-import { goodStore } from '@ysyp/stores';
+import {
+  // 单类 Store
+  GoodStore,
+  
+  /**
+   * 项目使用
+   * <RootStoreProvider store={new RootStore()} >
+   *   {props.children}
+   * </RootStoreProvider>
+   */
+  RootStore,
+  RootStoreProvider,
+
+  /**
+   * 代码使用
+   * const { goodStore } = useRootStore();
+   */
+  useRootStore
+} from '@ysyp/stores';
 ```
 
 ## 开发交流
