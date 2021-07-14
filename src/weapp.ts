@@ -43,12 +43,10 @@ export class WeappStore extends Store {
   };
   // 消息推送
   async pushMessage(data) {
-    const res = await fetch({ url: `/weapp/message/push`, data, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/weapp/message/push`, data, method: 'GET' });
   }
   // 订阅功能
   async getMessages(data) {
-    const res = await fetch({ url: `/weapp/messages`, data, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/weapp/messages`, data, method: 'GET' });
   }
 }

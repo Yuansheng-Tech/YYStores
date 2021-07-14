@@ -41,9 +41,7 @@ export class SaleStore {
       },
     }
   ) {
-    const res = await fetch({ url: `/dashboard/good/count`, data, method: 'GET' });
-    this.goodSale = res.data || [];
-    return res.data || [];
+    return await fetch({ url: `/dashboard/good/count`, data, method: 'GET' });
   }
 
   async getSourceCount(
@@ -53,8 +51,6 @@ export class SaleStore {
       },
     }
   ) {
-    const res = await fetch({ url: `/dashboard/source/count`, data, method: 'GET' });
-    this.sourceCount = res.data || [];
-    return res.data || [];
+    return await fetch({ url: `/dashboard/source/count`, data, method: 'GET' });
   }
 }

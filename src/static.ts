@@ -42,7 +42,6 @@ export class StaticStore extends Store {
   };
 
   async html(url, data) {
-    const res = await fetch({ url, data, method: 'GET' });
-    return res.data || [];
+    return await fetch({ url, data, method: 'GET' });
   }
 }

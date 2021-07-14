@@ -16,7 +16,7 @@
  */
 
 import Store, { StoreProps } from './Store';
-import { action, makeObservable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { fetch } from '@ysyp/utils';
 
 export class GoodStore extends Store {
@@ -42,7 +42,6 @@ export class GoodStore extends Store {
   };
 
   async byids(data) {
-    const res = await fetch({ url: `/goods/byids`, data, method: 'GET' });
-    return res.data || [];
+    return await fetch({ url: `/goods/byids`, data, method: 'GET' });
   }
 }

@@ -40,49 +40,44 @@ export class AuthStore extends Store {
 
   /** 微信登录 */
   async wxlogin(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/mini/login`,
       data,
       method: 'POST',
     });
-    return res;
   }
   /** 用户注册 */
   async register(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/mini/register`,
       data,
       method: 'POST',
     });
-    return res;
   }
   /** 登录解密 */
   async encrypt(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/mini/encrypt`,
       data,
       method: 'POST',
     });
-    return res.data;
   }
 
   /** 公众号登陆 */
   async welogin(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/mini/welogin`,
       data,
       method: 'POST',
     });
-    return res.data;
   }
 
   /** H5 登录 */
   async login(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/login`,
       data,
       method: 'POST',
     });
-    return res;
   }
 }

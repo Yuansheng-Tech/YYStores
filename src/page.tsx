@@ -39,11 +39,9 @@ export class PageStore {
       case 'object':
         this.currentPage = data;
         break;
-      default:
-        this.currentPage = this.wechatPages[0];
     }
 
-    console.log('setCurrentPage', data, type, this);
+    console.log('this.currentPage setCurrentPage', this.currentPage, data, type, this);
 
     return this.currentPage;
   }
@@ -55,7 +53,7 @@ export class PageStore {
         data: {},
         method: 'GET',
       })) || {};
-    this.wechatData = result.data;
+    this.wechatData = result.data || {};
     return result;
   }
 
@@ -72,19 +70,21 @@ export class PageStore {
         },
         method: 'GET',
       })) || {};
-    this.wechatPages = result.data;
+    this.wechatPages = result.data || [];
+    console.log('stores result', result, this.wechatPages);
     return result;
   }
 
   async savePageDataSuore(data) {
+    console.log('savePageDataSuore', data);
     const result =
       (await fetch({
-        url: `/wechat/pages`,
-        method: 'PUT',
+        url: `/wechat/pages/${data.id}`,
+        //@ts-ignore
+        method: 'PATCH',
         data: data,
       })) || {};
-    const index = this.wechatPages.findIndex((v) => v.id === this.currentPage.id);
-    this.wechatPages[index].data = data.data;
+    this.wechatPages.findIndex((v) => v.id === this.currentPage.id);
     return result;
   }
 
@@ -105,19 +105,16 @@ export class PageStore {
           data: data,
         })) || {};
     }
-    // const index = this.wechatPages.findIndex(v => v.id === this.currentPage.id)
-    // this.wechatPages[index].data = data.data
     return result;
   }
 
   async generateData() {
     // api/wechat/build
-    const result =
-      (await fetch({
-        url: `/wechat/build`,
-        method: 'PUT',
-        data: this.wechatData,
-      })) || {};
+    return await fetch({
+      url: `/wechat/build`,
+      method: 'PUT',
+      data: this.wechatData,
+    });
   }
 
   async buildPackage() {

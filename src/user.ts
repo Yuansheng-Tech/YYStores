@@ -45,7 +45,6 @@ export class UserStore extends Store {
   };
 
   async adminCount(data) {
-    const res = await fetch({ url: `/user/account`, data, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/user/account`, data, method: 'GET' });
   }
 }

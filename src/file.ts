@@ -43,11 +43,10 @@ export class FileStore extends Store {
   };
 
   async fileUpload(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/file/wxupload`,
       data,
       method: 'GET',
     });
-    return res.data || [];
   }
 }

@@ -55,7 +55,6 @@ export class MiniUserStore extends Store {
   };
 
   async account(data) {
-    const res = await fetch({ url: `/miniUser/account`, data, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/miniUser/account`, data, method: 'GET' });
   }
 }

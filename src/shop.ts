@@ -51,14 +51,10 @@ export class ShopStore extends Store {
 
   // 根据地理位置获取最近店铺
   async bylbs(data) {
-    // data.brandId = Taro.getStorageSync('brand').id;
-
-    const res = await fetch({ url: `/shopes/bylbs`, data, method: 'GET' });
-    return res;
+    return await fetch({ url: `/shopes/bylbs`, data, method: 'GET' });
   }
 
   async byids(data) {
-    const res = await fetch({ url: `/shopes/byids`, data, method: 'GET' });
-    return res;
+    return await fetch({ url: `/shopes/byids`, data, method: 'GET' });
   }
 }

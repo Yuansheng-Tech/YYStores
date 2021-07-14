@@ -45,18 +45,13 @@ export class SystemStore extends Store {
   };
 
   async getOneByEfunc(url, data = {}) {
-    Taro.showLoading({
-      title: '加载中...',
-    });
     const sysData =
       (await fetch({
         url: `/${this.api.get}${url}`,
         data,
         method: 'GET',
       })) || {};
-    console.log('sysData', sysData);
-    const result = sysData.data && sysData.data.length ? JSON.parse(sysData.data[0].value) : null;
-    Taro.hideLoading();
+    const result = sysData && sysData.length ? JSON.parse(sysData[0].value) : null;
     return result;
   }
 }

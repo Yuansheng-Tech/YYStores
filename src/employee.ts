@@ -45,11 +45,10 @@ export class EmployeeStore extends Store {
   };
 
   async adminCount(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/employee/account`,
       data,
       method: 'GET',
     });
-    return res.data;
   }
 }

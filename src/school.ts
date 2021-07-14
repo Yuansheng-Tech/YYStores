@@ -51,7 +51,6 @@ export class SchoolStore extends Store {
 
   // 根据地理位置获取最近店铺
   async bylbs(data) {
-    const res = await fetch({ url: `/schools/bylbs`, data, method: 'GET' });
-    return res;
+    return await fetch({ url: `/schools/bylbs`, data, method: 'GET' });
   }
 }

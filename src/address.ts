@@ -46,29 +46,26 @@ export class AddressStore extends Store {
   };
 
   async getSchool(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/address/school`,
       data,
       method: 'GET',
     });
-    return res.data;
   }
 
   async getThreeAddress(code) {
-    const res = await fetch({
+    return await fetch({
       url: `/province/${code}`,
       data: {},
       method: 'GET',
     });
-    return res.data;
   }
 
   async addreUser(url = '', data = {}, type) {
-    const res = await fetch({
+    return await fetch({
       url: `/addre/user${url}`,
       data,
       method: type,
     });
-    return res;
   }
 }

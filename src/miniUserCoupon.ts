@@ -48,35 +48,23 @@ export class MiniUserCouponStore extends Store {
   };
 
   async getPopupCoupon(data) {
-    const res = await fetch({ url: `/miniUserCoupon/popup`, data, method: 'GET' });
-    return res.data || [];
+    return await fetch({ url: `/miniUserCoupon/popup`, data, method: 'GET' });
   }
 
   async getList(data) {
-    const res = await fetch({ url: `/miniUserCoupon/list`, data, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/miniUserCoupon/list`, data, method: 'GET' });
   }
 
   async setPopupCouponShowed(data) {
-    const res = await fetch({ url: `/miniUserCoupon/showed`, data, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/miniUserCoupon/showed`, data, method: 'GET' });
   }
 
   /** 领取优惠券 */
   async miniUserCouponGet(id) {
-    const res = await fetch({ url: `/miniUserCoupon/get/${id}`, data: {}, method: 'GET' });
-    res.statusCode === 200 &&
-      Taro.showToast({
-        title: i18next.t('领取成功'),
-        icon: 'success',
-        duration: 2000,
-      });
-    /** 返回 status 做判断 */
-    return res.data;
+    return await fetch({ url: `/miniUserCoupon/get/${id}`, data: {}, method: 'GET' });
   }
 
   async miniUserCouponShare(id) {
-    const res = await fetch({ url: `/miniUserCoupon/share/${id}`, data: {}, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/miniUserCoupon/share/${id}`, data: {}, method: 'GET' });
   }
 }

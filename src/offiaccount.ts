@@ -15,8 +15,6 @@
  *   limitations under the License.
  */
 
-// offiaccount/config
-
 import Store, { StoreProps } from './Store';
 import { action, makeObservable } from 'mobx';
 import { fetch } from '@ysyp/utils';
@@ -49,11 +47,10 @@ export class OffiaccountStore extends Store {
    * @param data { url: '' }
    */
   async config(data) {
-    const res = await fetch({
+    return await fetch({
       url: `/offiaccount/config`,
       data,
       method: 'GET',
     });
-    return res.data;
   }
 }

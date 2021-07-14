@@ -67,79 +67,53 @@ export class OrderStore extends Store {
   }
 
   async check(data) {
-    const res = await fetch({ url: `/order/check`, data, method: 'POST' });
-    return res.data;
+    return await fetch({ url: `/order/check`, data, method: 'POST' });
   }
 
   async memopay(data) {
-    const res = await fetch({ url: `/order/memopay`, data, method: 'PUT' });
-    return res;
+    return await fetch({ url: `/order/memopay`, data, method: 'PUT' });
   }
 
   async lists(data) {
-    const res = await fetch({ url: `/order/lists`, data, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/order/lists`, data, method: 'GET' });
   }
 
   async list(type, data) {
-    const res = await fetch({ url: `/order/list/${type}`, data, method: 'GET' });
-    return res.data;
+    return await fetch({ url: `/order/list/${type}`, data, method: 'GET' });
   }
 
   // 购买健身课程
   async classes(data) {
-    const res = await fetch({ url: `/order/class`, data, method: 'POST' });
-    return res;
+    return await fetch({ url: `/order/class`, data, method: 'POST' });
   }
 
   // 购买优惠券
   async coupon(data) {
-    const res = await fetch({ url: `/order/coupon`, data, method: 'POST' });
-    return res.data || {};
+    return await fetch({ url: `/order/coupon`, data, method: 'POST' });
   }
 
   async qrcode(id, data) {
-    const res = await fetch({ url: `/order/qrcode/${id}`, data, method: 'GET' });
-    return res.data || {};
+    return await fetch({ url: `/order/qrcode/${id}`, data, method: 'GET' });
   }
 
   async rush(data) {
-    Taro.showLoading({
-      title: i18next.t('加载中...'),
-    });
-    const res = await fetch({ url: `/order/rush`, data, method: 'PUT' });
-    Taro.hideLoading();
-    return res.data || {};
+    // Taro.showLoading({
+    //   title: i18next.t('加载中...'),
+    // });
+    return await fetch({ url: `/order/rush`, data, method: 'PUT' });
+    // Taro.hideLoading();
   }
 
   async cancel(data) {
-    Taro.showLoading({
-      title: i18next.t('加载中...'),
-    });
-    const res = await fetch({ url: `/order/refund`, data, method: 'POST' });
-    Taro.hideLoading();
-    return res.data || {};
+    return await fetch({ url: `/order/refund`, data, method: 'POST' });
   }
 
   async finish(data) {
-    Taro.showLoading({
-      title: i18next.t('加载中...'),
-    });
-    const res = await fetch({ url: `/order/finish`, data, method: 'PUT' });
-    Taro.hideLoading();
-    return res.data || {};
+    return await fetch({ url: `/order/finish`, data, method: 'PUT' });
   }
 
   // 购买优惠券成功
   async success(data, callback = () => {}) {
-    const res = await fetch({ url: `/order/success`, data, method: 'PUT' });
-    const { message, statusCode } = res;
-
-    Taro.showToast({
-      title: statusCode === 200 ? i18next.t('购买成功') : i18next.t('购买出错'),
-      icon: statusCode === 200 ? 'success' : 'none',
-      duration: 2000,
-    }).then(() => statusCode === 200 && callback());
-    return res.data || {};
+    return await fetch({ url: `/order/success`, data, method: 'PUT' });
   }
 }

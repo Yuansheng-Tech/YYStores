@@ -48,11 +48,10 @@ export class ClassifyStore extends Store {
    * @param data
    */
   periphery(shopId, data) {
-    const res = fetch({
+    return fetch({
       url: `/classify/periphery/${shopId}`,
       data,
       method: 'GET',
     });
-    return res;
   }
 }

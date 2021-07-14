@@ -42,7 +42,6 @@ export class ShopGoodStore extends Store {
   };
 
   async byShopClassify(data) {
-    const res = await fetch({ url: `/shopGood`, data, method: 'GET' });
-    return res.data || [];
+    return await fetch({ url: `/shopGood`, data, method: 'GET' });
   }
 }
