@@ -15,9 +15,7 @@
  *   limitations under the License.
  */
 
-import Taro from '@tarojs/taro';
 import { action, makeObservable } from 'mobx';
-import i18next from 'i18next';
 import { fetch } from '@ysyp/utils';
 import Store, { StoreProps } from './Store';
 
@@ -113,7 +111,7 @@ export class OrderStore extends Store {
   }
 
   // 购买优惠券成功
-  async success(data, callback = () => {}) {
+  async success(data) {
     return await fetch({ url: `/order/success`, data, method: 'PUT' });
   }
 }

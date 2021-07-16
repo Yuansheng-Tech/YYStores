@@ -15,7 +15,7 @@
  *   limitations under the License.
  */
 
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
 

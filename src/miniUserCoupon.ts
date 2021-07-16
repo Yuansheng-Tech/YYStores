@@ -18,8 +18,6 @@
 import Store, { StoreProps } from './Store';
 import { action, makeObservable } from 'mobx';
 import { fetch } from '@ysyp/utils';
-import Taro from '@tarojs/taro';
-import i18next from 'i18next';
 
 export class MiniUserCouponStore extends Store {
   rootStore;

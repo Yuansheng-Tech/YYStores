@@ -15,8 +15,7 @@
  *   limitations under the License.
  */
 
-import { action, makeObservable, observable } from 'mobx';
-import Taro from '@tarojs/taro';
+import { action, observable } from 'mobx';
 
 import { fetch } from '@ysyp/utils';
 

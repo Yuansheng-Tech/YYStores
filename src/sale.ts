@@ -15,7 +15,7 @@
  *   limitations under the License.
  */
 
-import { observable, action, makeObservable } from 'mobx';
+import { action, makeObservable } from 'mobx';
 
 import { fetch } from '@ysyp/utils';
 

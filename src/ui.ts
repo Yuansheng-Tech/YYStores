@@ -4,7 +4,7 @@ export class UIStore {
   language = 'zh_CN';
 
   /** 展示提示的堆栈 */
-  noticeStack = [];
+  noticeStack: any[] = [];
 
   pendingRequest = false;
 
@@ -23,7 +23,7 @@ export class UIStore {
     this.pendingRequest = !this.pendingRequest;
   }
 
-  setNoticeStack(data, type: 'insert' | 'remove' | 'all') {
+  setNoticeStack(data: any, type: 'insert' | 'remove' | 'all') {
     switch (type) {
       case 'insert':
         this.noticeStack.push(data);

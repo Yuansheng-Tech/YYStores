@@ -15,9 +15,8 @@
  *   limitations under the License.
  */
 
-import { makeObservable, observable } from 'mobx';
+import { makeObservable } from 'mobx';
 import Store, { StoreProps } from './Store';
-import { fetch } from '@ysyp/utils';
 
 export class FeedbackStore extends Store {
   /** 接口返回资料 */

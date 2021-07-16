@@ -16,7 +16,7 @@
  */
 
 import Store, { StoreProps } from './Store';
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable } from 'mobx';
 import { fetch } from '@ysyp/utils';
 
 export interface IGood {
