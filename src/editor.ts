@@ -1,6 +1,6 @@
 import { observable, toJS, makeObservable } from 'mobx';
 import React from 'react';
-import _ from 'lodash';
+import _set from 'lodash.set';
 
 import { componentsData } from '@ysyp/ui';
 
@@ -90,8 +90,8 @@ export class EditorStore {
 
   setConfigDataSource(val: any, index: number, key: string) {
     this.selectConfigSource = index;
-    _.set(this.configDataSource, key, val);
-    _.set(this.mainSource[index].data, key, val);
+    _set(this.configDataSource, key, val);
+    _set(this.mainSource[index].data, key, val);
   }
 
   setPreview(val: boolean) {
