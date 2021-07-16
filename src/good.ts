@@ -19,6 +19,34 @@ import Store, { StoreProps } from './Store';
 import { action, makeObservable, observable } from 'mobx';
 import { fetch } from '@ysyp/utils';
 
+export interface IGood {
+  id: string;
+  updateId: string;
+  name: string;
+  type: string;
+  status: number;
+  icon: string;
+  summary: string;
+  description: string;
+  price_min: string;
+  stock: number;
+  total_sale: number;
+  special_price: boolean;
+  weight: number;
+  unit: string;
+  vip_channel: string;
+  wow: string;
+  // vlog:	[...]
+  // album:	[...]
+  // materiels:	[...]
+  // product_introduction_imgs:	[...]
+  // menu_imgs:	[...]
+  // test_report_imgs:	[...]
+  // recommends:	[...]
+  // source:	SourceEntity{...}
+  // tags:	[...]
+}
+
 export class GoodStore extends Store {
   rootStore;
 

@@ -19,6 +19,18 @@ import Store, { StoreProps } from './Store';
 import { action, makeObservable } from 'mobx';
 import { fetch } from '@ysyp/utils';
 
+export interface IClassify {
+  id: string;
+  updateId: string;
+  name: string;
+  banner: string;
+  icon: string;
+  summary: string;
+  description: string;
+  level: number;
+  status: number;
+  type: string;
+}
 export class ClassifyStore extends Store {
   rootStore;
 
