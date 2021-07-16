@@ -1,4 +1,4 @@
-import { useRootStore } from '../root';
+import { useRootStore } from '../useRootStore';
 import useSWR from 'swr';
 import { fetcher } from '@ysyp/utils';
 

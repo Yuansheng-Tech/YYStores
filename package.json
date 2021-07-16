@@ -27,6 +27,7 @@
   "license": "MIT",
   "author": "Fu Yin",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "files": [

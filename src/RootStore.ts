@@ -33,7 +33,7 @@ import { EditorStore } from './editor';
 
 import { UIStore } from './ui';
 
-class RootStore {
+export class RootStore {
   addressStore;
   shareStore;
   shopStore;
@@ -104,25 +104,3 @@ class RootStore {
     this.editorStore = new EditorStore(this);
   }
 }
-
-// single root store instance
-const rootStoreInstance: RootStore = new RootStore();
-
-// expose the store
-export const getRootStore = () => rootStoreInstance;
-
-const RootStoreContext = React.createContext(rootStoreInstance);
-
-// Root store wrapped in a React context.
-// 新建钩子函数：获取上下文中的数据（Store 对象）
-const useRootStore = () => {
-  return useContext(RootStoreContext);
-};
-
-// 新建组件：通过 Provider 传递上下文中的数据
-const RootStoreProvider = ({ store, children }) => {
-  const { Provider } = RootStoreContext;
-  return <Provider value={store}>{children}</Provider>;
-};
-
-export { RootStore, RootStoreProvider, useRootStore };
