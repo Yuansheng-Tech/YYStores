@@ -2,7 +2,7 @@ import { observable, toJS, makeObservable } from 'mobx';
 import React from 'react';
 import _set from 'lodash.set';
 
-import { componentsData } from '@ysyp/ui';
+import { componentsData } from '@ysyp/ui/dist/src/componentsData';
 
 export interface ImainSource {
   icon: string;
@@ -16,6 +16,7 @@ export class EditorStore {
   public data = componentsData;
 
   public mainSource: ImainSource[] = [];
+  public richTextMainSource: string = '';
 
   public configSource: any = {};
   public configDataSource: any = {};
@@ -31,6 +32,7 @@ export class EditorStore {
 
       data: observable,
       mainSource: observable,
+      richTextMainSource: observable,
       configSource: observable,
       configDataSource: observable,
       selectConfigSource: observable,
@@ -41,6 +43,10 @@ export class EditorStore {
 
   setMainSource(val: ImainSource[], replace = false) {
     replace ? (this.mainSource = val) : this.mainSource.push(...val);
+  }
+
+  setRichtextMainSource(val: string) {
+    this.richTextMainSource = val;
   }
 
   setMainSourceItem(type: string, index: number, item: ImainSource) {

@@ -16,10 +16,9 @@
  */
 
 import { action, makeObservable } from 'mobx';
-import Taro from '@tarojs/taro';
+import Taro from './taro';
 import Store, { StoreProps } from './Store';
 import { fetch } from '@ysyp/utils';
-
 export class ShopStore extends Store {
   shopId = '';
   nearByShop = Taro.getStorageSync('nearByShop') || {};

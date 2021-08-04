@@ -16,7 +16,7 @@
  */
 
 import { makeObservable } from 'mobx';
-import Taro from '@tarojs/taro';
+import Taro from './taro';
 import Store, { StoreProps } from './Store';
 
 export class BrandStore extends Store {

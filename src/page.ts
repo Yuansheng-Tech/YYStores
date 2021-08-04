@@ -1,4 +1,4 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, toJS } from 'mobx';
 
 import { fetch } from '@ysyp/utils';
 
@@ -31,18 +31,15 @@ export class PageStore {
   setCurrentPage(data, type: 'id' | 'path' | 'object' = 'object') {
     switch (type) {
       case 'id':
-        this.currentPage = (this.wechatPages || []).find((v) => (v.id = data));
+        this.currentPage = this.wechatPages.find((v) => data === v.id);
         break;
       case 'path':
-        this.currentPage = (this.wechatPages || []).find((v) => (v.path = data));
+        this.currentPage = this.wechatPages.find((v) => data === v.path);
         break;
       case 'object':
-        this.currentPage = data;
+        this.currentPage = this.wechatPages.find((v) => data.id === v.id);
         break;
     }
-
-    console.log('this.currentPage setCurrentPage', this.currentPage, data, type, this);
-
     return this.currentPage;
   }
 
@@ -84,7 +81,7 @@ export class PageStore {
         method: 'PATCH',
         data: data,
       })) || {};
-    this.wechatPages.findIndex((v) => v.id === this.currentPage.id);
+    // this.wechatPages.findIndex((v) => v.id === this.currentPage.id);
     return result;
   }
 
