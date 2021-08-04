@@ -41,7 +41,8 @@
     "prebuild": "del dist/* tsconfig.tsbuildinfo",
     "build": "tsc",
     "docs": "typedoc",
-    "release": "np"
+    "release": "np",
+    "test": ""
   },
   "husky": {
     "hooks": {
