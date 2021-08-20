@@ -19,15 +19,15 @@ import { makeObservable } from 'mobx';
 import Store, { StoreProps } from './Store';
 
 export class OpenadsStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
   api = {
     get: 'wechat/openads',

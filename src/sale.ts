@@ -17,21 +17,21 @@
 
 import { action, makeObservable } from 'mobx';
 
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export class SaleStore {
   goodSale = [];
   sourceCount = [];
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
 
       getGoodCount: action,
       getSourceCount: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   async getGoodCount(

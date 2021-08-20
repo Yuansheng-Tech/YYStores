@@ -17,21 +17,21 @@
 
 import { action, makeObservable } from 'mobx';
 import Store, { StoreProps } from './Store';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export class WeappStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       pushMessage: action,
       getMessages: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
   api = {
     get: 'weapp',

@@ -17,23 +17,23 @@
 
 import { action, makeObservable } from 'mobx';
 import Store, { StoreProps } from './Store';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 /** 地址 */
 export class AddressStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       getSchool: action,
       getThreeAddress: action,
       addreUser: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   api = {

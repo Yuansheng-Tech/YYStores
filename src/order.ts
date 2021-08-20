@@ -16,16 +16,16 @@
  */
 
 import { action, makeObservable } from 'mobx';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 import Store, { StoreProps } from './Store';
 
 export class OrderStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       vip: action,
@@ -42,7 +42,7 @@ export class OrderStore extends Store {
       finish: action,
       success: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
   api = {
     get: 'order',

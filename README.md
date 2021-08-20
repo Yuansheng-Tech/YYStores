@@ -20,21 +20,13 @@ npm install @ysyp/stores
 import {
   // 单类 Store
   GoodStore,
-  
-  /**
-   * 项目使用
-   * <RootStoreProvider store={new RootStore()} >
-   *   {props.children}
-   * </RootStoreProvider>
-   */
+
+  /** 项目使用 <RootStoreProvider store={new RootStore()} > {props.children} </RootStoreProvider> */
   RootStore,
   RootStoreProvider,
 
-  /**
-   * 代码使用
-   * const { goodStore } = useRootStore();
-   */
-  useRootStore
+  /** 代码使用 const { goodStore } = useRootStore(); */
+  useRootStore,
 } from '@ysyp/stores';
 ```
 

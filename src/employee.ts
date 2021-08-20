@@ -17,22 +17,22 @@
 
 import { action, makeObservable } from 'mobx';
 import Store, { StoreProps } from './Store';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export class EmployeeStore extends Store {
   /** 接口返回资料 */
   userData = {};
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       adminCount: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   api = {

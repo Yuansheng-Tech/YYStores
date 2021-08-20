@@ -25,9 +25,9 @@ import { SaleStore } from './sale';
 import { UserStore } from './user';
 import { FeedbackStore } from './feedback';
 
-import { PageStore } from './page';
-import { GlobalStore } from './global';
-import { EditorStore } from './editor';
+// import { PageStore } from './page';
+// import { GlobalStore } from './global';
+// import { EditorStore } from './editor';
 
 import { UIStore } from './ui';
 
@@ -58,47 +58,47 @@ export class RootStore {
   saleStore;
   userStore;
   feedbackStore;
-  pageStore;
-  globalStore;
-  editorStore;
+  // pageStore;
+  // globalStore;
+  // editorStore;
   uiStore;
 
   constructor() {
     // data request
-    this.addressStore = new AddressStore(this);
-    this.shareStore = new ShareStore(this);
-    this.shopStore = new ShopStore(this);
-    this.schoolStore = new SchoolStore(this);
-    this.shopGoodStore = new ShopGoodStore(this);
-    this.classifyStore = new ClassifyStore(this);
-    this.miniUserStore = new MiniUserStore(this);
-    this.goodStore = new GoodStore(this);
-    this.vipStore = new VipStore(this);
-    this.miniUserCouponStore = new MiniUserCouponStore(this);
-    this.vipfinanceStore = new VipfinanceStore(this);
-    this.orderStore = new OrderStore(this);
-    this.addressStore = new AddressStore(this);
-    this.wechatStore = new WechatStore(this);
-    this.weappStore = new WeappStore(this);
-    this.staticStore = new StaticStore(this);
-    this.authStore = new AuthStore(this);
-    this.employeeStore = new EmployeeStore(this);
-    this.offiaccountStore = new OffiaccountStore(this);
-    this.systemStore = new SystemStore(this);
-    this.brandStore = new BrandStore(this);
-    this.openadsStore = new OpenadsStore(this);
-    this.wechatIndexStore = new WechatIndexStore(this);
-    this.fileStore = new FileStore(this);
-    this.saleStore = new SaleStore(this);
-    this.userStore = new UserStore(this);
-    this.feedbackStore = new FeedbackStore(this);
+    this.addressStore = new AddressStore();
+    this.shareStore = new ShareStore();
+    this.shopStore = new ShopStore();
+    this.schoolStore = new SchoolStore();
+    this.shopGoodStore = new ShopGoodStore();
+    this.classifyStore = new ClassifyStore();
+    this.miniUserStore = new MiniUserStore();
+    this.goodStore = new GoodStore();
+    this.vipStore = new VipStore();
+    this.miniUserCouponStore = new MiniUserCouponStore();
+    this.vipfinanceStore = new VipfinanceStore();
+    this.orderStore = new OrderStore();
+    this.addressStore = new AddressStore();
+    this.wechatStore = new WechatStore();
+    this.weappStore = new WeappStore();
+    this.staticStore = new StaticStore();
+    this.authStore = new AuthStore();
+    this.employeeStore = new EmployeeStore();
+    this.offiaccountStore = new OffiaccountStore();
+    this.systemStore = new SystemStore();
+    this.brandStore = new BrandStore();
+    this.openadsStore = new OpenadsStore();
+    this.wechatIndexStore = new WechatIndexStore();
+    this.fileStore = new FileStore();
+    this.saleStore = new SaleStore();
+    this.userStore = new UserStore();
+    this.feedbackStore = new FeedbackStore();
 
     // 界面
-    this.uiStore = new UIStore(this);
+    this.uiStore = new UIStore();
 
     // editor
-    this.pageStore = new PageStore(this);
-    this.globalStore = new GlobalStore(this);
-    this.editorStore = new EditorStore(this);
+    // this.pageStore = new PageStore();
+    // this.globalStore = new GlobalStore();
+    // this.editorStore = new EditorStore();
   }
 }

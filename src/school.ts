@@ -18,7 +18,7 @@
 import { action, makeObservable } from 'mobx';
 import Taro from './taro';
 import Store, { StoreProps } from './Store';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 export class SchoolStore extends Store {
   nearBySchool = Taro.getStorageSync('nearBySchool') || {};
   setSchoolAdress = Taro.getStorageSync('setSchoolAdress') || {};
@@ -26,17 +26,17 @@ export class SchoolStore extends Store {
   shchoolId = Taro.getStorageSync('shchoolId');
   nearBySchools = [];
 
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       bylbs: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   api = {

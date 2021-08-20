@@ -8,15 +8,15 @@ export class UIStore {
 
   pendingRequest = false;
 
-  rootStore;
-  constructor(rootStore) {
+  // rootStore;
+  constructor() {
     makeAutoObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       noticeStack: observable,
       pendingRequest: observable,
       togglePendingRequest: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   togglePendingRequest() {

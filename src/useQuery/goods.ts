@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { fetcher } from '@ysyp/utils';
+import { fetcher } from '../utils/fetcher';
 
 export interface IGoods {}
 

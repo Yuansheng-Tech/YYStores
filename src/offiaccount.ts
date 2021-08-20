@@ -17,20 +17,20 @@
 
 import Store, { StoreProps } from './Store';
 import { action, makeObservable } from 'mobx';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export class OffiaccountStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       config: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
   api = {
     get: 'offiaccount',

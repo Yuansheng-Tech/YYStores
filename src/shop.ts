@@ -18,25 +18,25 @@
 import { action, makeObservable } from 'mobx';
 import Taro from './taro';
 import Store, { StoreProps } from './Store';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 export class ShopStore extends Store {
   shopId = '';
   nearByShop = Taro.getStorageSync('nearByShop') || {};
   setShopAdress = Taro.getStorageSync('setShopAdress') || '';
   ShopAdressFlag = Taro.getStorageSync('ShopAdressFlag') || 0;
   nearByShopes = [];
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       bylbs: action,
       byids: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   api = {

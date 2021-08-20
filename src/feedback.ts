@@ -21,15 +21,15 @@ import Store, { StoreProps } from './Store';
 export class FeedbackStore extends Store {
   /** 接口返回资料 */
   userData = {};
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   api = {

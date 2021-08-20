@@ -17,7 +17,7 @@
 
 import Store, { StoreProps } from './Store';
 import { action, makeObservable } from 'mobx';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export interface IGood {
   id: string;
@@ -48,17 +48,17 @@ export interface IGood {
 }
 
 export class GoodStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       byids: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
   api = {
     get: 'good',

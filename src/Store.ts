@@ -17,7 +17,7 @@
 
 import { action, observable } from 'mobx';
 
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export const StoreProps = {
   data: observable,

@@ -17,16 +17,16 @@
 
 import { action, makeObservable } from 'mobx';
 import Store, { StoreProps } from './Store';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 /** 权限，登录，注册 */
 export class AuthStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       wxlogin: action,
@@ -35,7 +35,7 @@ export class AuthStore extends Store {
       welogin: action,
       login: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   /** 微信登录 */

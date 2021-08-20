@@ -17,15 +17,15 @@
 
 import Store, { StoreProps } from './Store';
 import { action, makeObservable } from 'mobx';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export class MiniUserCouponStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       getPopupCoupon: action,
@@ -34,7 +34,7 @@ export class MiniUserCouponStore extends Store {
       miniUserCouponGet: action,
       miniUserCouponShare: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
   api = {
     get: 'miniUserCoupon',

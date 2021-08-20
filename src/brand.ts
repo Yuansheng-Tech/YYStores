@@ -20,15 +20,15 @@ import Taro from './taro';
 import Store, { StoreProps } from './Store';
 
 export class BrandStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   brand = Taro.getStorageSync('brand') || {};

@@ -17,7 +17,7 @@
 
 import { action, makeObservable } from 'mobx';
 import Store, { StoreProps } from './Store';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export class MiniUserStore extends Store {
   /** 接口返回资料 */
@@ -32,17 +32,17 @@ export class MiniUserStore extends Store {
     // i18next.t('男士'),
     // i18next.t('女士')
   ];
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       account: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
 
   api = {

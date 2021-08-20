@@ -17,7 +17,7 @@
 
 import Store, { StoreProps } from './Store';
 import { action, makeObservable } from 'mobx';
-import { fetch } from '@ysyp/utils';
+import { fetch } from './utils/fetch';
 
 export interface IClassify {
   id: string;
@@ -32,17 +32,17 @@ export interface IClassify {
   type: string;
 }
 export class ClassifyStore extends Store {
-  rootStore;
+  // rootStore;
 
-  constructor(rootStore) {
+  constructor() {
     super();
     makeObservable(this, {
-      rootStore: false,
+      // rootStore: false,
       ...StoreProps,
 
       periphery: action,
     });
-    this.rootStore = rootStore;
+    // this.rootStore = // rootStore;
   }
   api = {
     get: 'classify',

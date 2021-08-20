@@ -43,9 +43,9 @@ export { UserStore } from './user';
 export { FeedbackStore } from './feedback';
 
 // editor
-export { PageStore } from './page';
-export { GlobalStore } from './global';
-export { EditorStore } from './editor';
+// export { PageStore } from './page';
+// export { GlobalStore } from './global';
+// export { EditorStore } from './editor';
 
 // global UI
 export { UIStore } from './ui';
