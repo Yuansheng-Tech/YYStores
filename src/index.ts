@@ -52,6 +52,5 @@ export { UIStore } from './ui';
 
 // root function
 export { RootStore } from './RootStore';
-export { RootStoreProvider } from './RootStoreProvider';
-export { useRootStore } from './useRootStore';
+export { useRootStore, RootStoreProvider } from './RootStoreProvider';
 export * from './useQuery/index';
