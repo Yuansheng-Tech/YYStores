@@ -16,7 +16,7 @@
  */
 
 import { action, makeObservable } from 'mobx';
-import Taro from './taro';
+import Taro from '@tarojs/taro';
 import Store, { StoreProps } from './Store';
 import { fetch } from './utils/fetch';
 export class ShopStore extends Store {
