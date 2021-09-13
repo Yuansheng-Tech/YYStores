@@ -70,7 +70,7 @@ export default class Store {
     };
   }
   /** @param url 路径 或者 ID */
-  async get(url: string | object = '', data) {
+  async get(url: string | object = '', data = {}) {
     return await fetch({
       url: `/${this.api.get}${url}`,
       data,

@@ -21,9 +21,9 @@ import Store, { StoreProps } from './Store';
 import { fetch } from './utils/fetch';
 export class ShopStore extends Store {
   shopId = '';
-  nearByShop = Taro.getStorageSync('nearByShop') || {};
-  setShopAdress = Taro.getStorageSync('setShopAdress') || '';
-  ShopAdressFlag = Taro.getStorageSync('ShopAdressFlag') || 0;
+  nearByShop = {};
+  setShopAdress = '';
+  ShopAdressFlag = 0;
   nearByShopes = [];
   // rootStore;
 

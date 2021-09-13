@@ -1,10 +1,11 @@
-import useSWR from 'swr';
+// import useSWR from 'swr';
 import { fetcher } from '../utils/fetcher';
 
 export interface IGoods {}
 
 export function useGoods(options) {
-  const { data, error } = useSWR('/goods', (url) => fetcher(url, options));
+  // const { data, error } = useSWR('/goods', (url) => fetcher(url, options));
+  let data = {}, error = false;
   return {
     data,
     isLoading: !error && !data,
@@ -13,7 +14,8 @@ export function useGoods(options) {
 }
 
 export function useGood(id) {
-  const { data, error } = useSWR(`/goods/${id}`, fetcher);
+  // const { data, error } = useSWR(`/goods/${id}`, fetcher);
+  let data = {}, error = false;
   return {
     data,
     isLoading: !error && !data,

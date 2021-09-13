@@ -21,8 +21,8 @@ import { fetch } from './utils/fetch';
 
 export class MiniUserStore extends Store {
   /** 接口返回资料 */
-  userData = {};
-  employee = {};
+  userData: any = {};
+  employee: any = {};
 
   gender = [
     '同学',
@@ -41,6 +41,7 @@ export class MiniUserStore extends Store {
       ...StoreProps,
 
       account: action,
+      setUserData: action,
     });
     // this.rootStore = // rootStore;
   }
@@ -53,6 +54,10 @@ export class MiniUserStore extends Store {
     patch: 'miniUsers',
     delete: 'miniUsers',
   };
+
+  setUserData(data = {}) {
+    this.userData = data
+  }
 
   async account(data) {
     return await fetch({ url: `/miniUser/account`, data, method: 'GET' });

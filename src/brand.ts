@@ -31,7 +31,7 @@ export class BrandStore extends Store {
     // this.rootStore = // rootStore;
   }
 
-  brand = Taro.getStorageSync('brand') || {};
+  brand = {};
 
   api = {
     get: 'brand',

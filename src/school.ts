@@ -20,10 +20,10 @@ import Taro from '@tarojs/taro';
 import Store, { StoreProps } from './Store';
 import { fetch } from './utils/fetch';
 export class SchoolStore extends Store {
-  nearBySchool = Taro.getStorageSync('nearBySchool') || {};
-  setSchoolAdress = Taro.getStorageSync('setSchoolAdress') || {};
-  SchoolAdressFlag = Taro.getStorageSync('SchoolAdressFlag') || {};
-  shchoolId = Taro.getStorageSync('shchoolId');
+  nearBySchool = {};
+  setSchoolAdress = {};
+  SchoolAdressFlag = {};
+  shchoolId = '';
   nearBySchools = [];
 
   // rootStore;
