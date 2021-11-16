@@ -126,7 +126,7 @@ const fatchCallback = (res) => {
       title: '没有权限！',
       icon: 'none',
     });
-    Taro.setStorageSync('accessToken', '');
+    // Taro.setStorageSync('accessToken', '');
     let path = getCurrentPageUrl();
     if (!Taro.getStorageSync('notlogin') && path !== 'subPackages/pages/login/index') {
       // !Taro.getStorageSync("notlogin") &&
@@ -146,10 +146,10 @@ const fatchCallback = (res) => {
     return {};
   } else if (res && statusCodeData >= 400) {
     Taro.showToast({
-      title: messageData,
+      title: Object.values(messageData[0])[0] || messageData,
       icon: 'none',
     });
-    return {};
+    return resultData;
   } else if (res && statusCodeData >= 200 && statusCodeData < 300) {
     /** 本地缓存 */
     // store.set(urlKey, res.data);

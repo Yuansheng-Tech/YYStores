@@ -42,6 +42,9 @@ export { SaleStore } from './sale';
 export { UserStore } from './user';
 export { FeedbackStore } from './feedback';
 
+export { CareerApplyStore } from './career/apply';
+export { CareerJobStore } from './career/job';
+
 // editor
 // export { PageStore } from './page';
 // export { GlobalStore } from './global';

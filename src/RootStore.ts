@@ -24,6 +24,8 @@ import { FileStore } from './file';
 import { SaleStore } from './sale';
 import { UserStore } from './user';
 import { FeedbackStore } from './feedback';
+import { CareerJobStore } from './career/job';
+import { CareerApplyStore } from './career/apply';
 
 // import { PageStore } from './page';
 // import { GlobalStore } from './global';
@@ -62,6 +64,8 @@ export class RootStore {
   // globalStore;
   // editorStore;
   uiStore;
+  careerJobStore;
+  careerApplyStore;
 
   constructor() {
     // data request
@@ -95,6 +99,9 @@ export class RootStore {
 
     // 界面
     this.uiStore = new UIStore();
+
+    this.careerApplyStore = new CareerApplyStore();
+    this.careerJobStore = new CareerJobStore();
 
     // editor
     // this.pageStore = new PageStore();

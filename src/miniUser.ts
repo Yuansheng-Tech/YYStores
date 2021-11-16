@@ -15,7 +15,7 @@
  *   limitations under the License.
  */
 
-import { action, makeObservable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import Store, { StoreProps } from './Store';
 import { fetch } from './utils/fetch';
 
@@ -39,6 +39,8 @@ export class MiniUserStore extends Store {
     makeObservable(this, {
       // rootStore: false,
       ...StoreProps,
+      userData: observable,
+      employee: observable,
 
       account: action,
       setUserData: action,
@@ -56,7 +58,8 @@ export class MiniUserStore extends Store {
   };
 
   setUserData(data = {}) {
-    this.userData = data
+    console.log('setUserData', data);
+    this.userData = data;
   }
 
   async account(data) {

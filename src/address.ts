@@ -15,7 +15,7 @@
  *   limitations under the License.
  */
 
-import { action, makeObservable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import Store, { StoreProps } from './Store';
 import { fetch } from './utils/fetch';
 
@@ -23,12 +23,19 @@ import { fetch } from './utils/fetch';
 export class AddressStore extends Store {
   // rootStore;
 
+  location = {};
+  locationName = '';
+
   constructor() {
     super();
     makeObservable(this, {
       // rootStore: false,
       ...StoreProps,
+      locationName: observable,
+      location: observable,
 
+      setLocation: action,
+      setLocationName: action,
       getSchool: action,
       getThreeAddress: action,
       addreUser: action,
@@ -44,6 +51,14 @@ export class AddressStore extends Store {
     patch: 'addresses',
     delete: 'addresses',
   };
+
+  setLocation(data) {
+    this.location = data;
+  }
+
+  setLocationName(data) {
+    this.locationName = data;
+  }
 
   async getSchool(data) {
     return await fetch({
